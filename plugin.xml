@@ -9,7 +9,7 @@
   <description>
     Launch your app by using this URL:  mycoolapp://
     You can add a path and even pass params like this: mycoolerapp://somepath?foo=bar
-    Supports up to 3 schemas.
+    Supports up to 3 scheme.
   </description>
 
   <author>Eddy Verbruggen</author>
