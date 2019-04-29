@@ -1,16 +1,23 @@
 # Custom URL scheme Cordova/PhoneGap Plugin
 #### launch your app by a link like this: `mycoolapp://`
-for iOS, Android and WP, by [Eddy Verbruggen](http://www.x-services.nl)
-- This repo is for PhoneGap 3.0.0 and up
-- For PhoneGap 2.9.0 and lower, [switch to the phonegap-2.9.0-and-lower branch](https://github.com/EddyVerbruggen/Custom-URL-scheme/tree/phonegap-2.9.0-and-lower)
+
+[![NPM version][npm-image]][npm-url]
+[![Downloads][downloads-image]][npm-url]
+[![Twitter Follow][twitter-image]][twitter-url]
+
+[npm-image]:http://img.shields.io/npm/v/cordova-plugin-customurlscheme.svg
+[npm-url]:https://npmjs.org/package/cordova-plugin-customurlscheme
+[downloads-image]:http://img.shields.io/npm/dm/cordova-plugin-customurlscheme.svg
+[twitter-image]:https://img.shields.io/twitter/follow/eddyverbruggen.svg?style=social&label=Follow%20me
+[twitter-url]:https://twitter.com/eddyverbruggen
 
 1. [Description](https://github.com/EddyVerbruggen/Custom-URL-scheme#1-description)
 2. [Installation](https://github.com/EddyVerbruggen/Custom-URL-scheme#2-installation)
-	2. [Automatically (CLI / Plugman)](https://github.com/EddyVerbruggen/Custom-URL-scheme#automatically-cli--plugman)
+	1. [Automatically (CLI / Plugman)](https://github.com/EddyVerbruggen/Custom-URL-scheme#automatically-cli--plugman)
 	2. [Manually](https://github.com/EddyVerbruggen/Custom-URL-scheme#manually)
-	2. [PhoneGap Build](https://github.com/EddyVerbruggen/Custom-URL-scheme#phonegap-build)
+	3. [PhoneGap Build](https://github.com/EddyVerbruggen/Custom-URL-scheme#phonegap-build)
 3. [Usage](https://github.com/EddyVerbruggen/Custom-URL-scheme#3-usage)
-	2. [iOS](https://github.com/EddyVerbruggen/Custom-URL-scheme#ios-usage)
+	1. [iOS](https://github.com/EddyVerbruggen/Custom-URL-scheme#ios-usage)
 	2. [Meteor](https://github.com/EddyVerbruggen/Custom-URL-scheme#meteor--getlastintent-android-only)
 4. [URL Scheme hints](https://github.com/EddyVerbruggen/Custom-URL-scheme#4-url-scheme-hints)
 5. [License](https://github.com/EddyVerbruggen/Custom-URL-scheme#5-license)
@@ -141,7 +148,7 @@ cordova-cli 4.3.+ and cordova-android 3.7.1+
 
 ## 3. Usage
 
-1a\. Your app can be launced by linking to it like this from a website or an email for example (all of these will work):
+1a\. Your app can be launched by linking to it like this from a website or an email for example (all of these will work):
 ```html
 <a href="mycoolapp://">Open my app</a>
 <a href="mycoolapp://somepath">Open my app</a>
