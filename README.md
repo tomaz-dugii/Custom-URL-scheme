@@ -1,66 +1,42 @@
-# Custom URL scheme Cordova/PhoneGap Plugin
-#### launch your app by a link like this: `mycoolapp://`
+# Custom URL scheme NG
 
-[![NPM version][npm-image]][npm-url]
-[![Downloads][downloads-image]][npm-url]
-[![Twitter Follow][twitter-image]][twitter-url]
+Launch your app by a link like this: `mycoolapp://`
 
-[npm-image]:http://img.shields.io/npm/v/cordova-plugin-customurlscheme.svg
-[npm-url]:https://npmjs.org/package/cordova-plugin-customurlscheme
-[downloads-image]:http://img.shields.io/npm/dm/cordova-plugin-customurlscheme.svg
-[twitter-image]:https://img.shields.io/twitter/follow/eddyverbruggen.svg?style=social&label=Follow%20me
-[twitter-url]:https://twitter.com/eddyverbruggen
-
-1. [Description](https://github.com/EddyVerbruggen/Custom-URL-scheme#1-description)
-2. [Installation](https://github.com/EddyVerbruggen/Custom-URL-scheme#2-installation)
-	1. [Automatically (CLI / Plugman)](https://github.com/EddyVerbruggen/Custom-URL-scheme#automatically-cli--plugman)
-	2. [Manually](https://github.com/EddyVerbruggen/Custom-URL-scheme#manually)
-	3. [PhoneGap Build](https://github.com/EddyVerbruggen/Custom-URL-scheme#phonegap-build)
-3. [Usage](https://github.com/EddyVerbruggen/Custom-URL-scheme#3-usage)
-	1. [iOS](https://github.com/EddyVerbruggen/Custom-URL-scheme#ios-usage)
-	2. [Meteor](https://github.com/EddyVerbruggen/Custom-URL-scheme#meteor--getlastintent-android-only)
-4. [URL Scheme hints](https://github.com/EddyVerbruggen/Custom-URL-scheme#4-url-scheme-hints)
-5. [License](https://github.com/EddyVerbruggen/Custom-URL-scheme#5-license)
-
-
-### BEWARE: 
-### - [This Apache Cordova issue](https://issues.apache.org/jira/browse/CB-7606) causes problems with Cordova-iOS 3.7.0: the `handleOpenURL` function is not invoked upon cold start. Use a higher or lower version than 3.7.0.
-### - As of iOS 9.2, the dialog `Open in "mycoolapp"?` no longer blocks JS, so if you have a short timeout that opens the app store, the user will be taken to the store before they have a chance to see and answer the dialog. [See below](https://github.com/EddyVerbruggen/Custom-URL-scheme#ios-usage) for available solutions.
+Supports up to 3 scheme.
 
 ## 1. Description
 
 This plugin allows you to start your app by calling it with a URL like `mycoolapp://path?foo=bar`
 
+* Supports up to 3 scheme
 * Compatible with [Cordova Plugman](https://github.com/apache/cordova-plugman)
-* Submitted and waiting for approval at PhoneGap Build ([more information](https://build.phonegap.com/plugins))
 
 ### iOS specifics
+
 * Forget about [using config.xml to define a URL scheme](https://build.phonegap.com/docs/config-xml#url_schemes). This plugin adds 2 essential enhancements:
   - Uniform URL scheme with Android (for which there is no option to define a URL scheme via PhoneGap configuration at all).
   - You still need to wire up the Javascript to handle incoming events. This plugin assists you with that.
-* Tested on iOS 5.1, 6 and 7.
+* Tested on iOS 10+.
 
 ### Android specifics
 * Unlike iOS, there is no way to use config.xml to define a scheme for your app. Now there is.
-* Tested on Android 4.3, will most likely work with 2.2 and up.
-* If you're trying to launch your app from an In-App Browser it opened previously, then [use this In-App Browser plugin fork](https://github.com/Innovation-District/cordova-plugin-inappbrowser) which allows that.
-* In case you have a multi-page app (multiple HTML files, and all implementing handleOpenURL), set the preference `CustomURLSchemePluginClearsAndroidIntent` to `true` in `config.xml` so the function won't be triggered multiple times. Note that this may interfere with other plugins requiring the intent data.
-
+* Tested on Android 6+.
 
 ## 2. Installation
 
 ### Automatically (CLI / Plugman)
+
 LaunchMyApp is compatible with [Cordova Plugman](https://github.com/apache/cordova-plugman).
 Replace `mycoolapp` by a nice scheme you want to have your app listen to:
 
 Latest release on npm:
 ```
-$ cordova plugin add cordova-plugin-customurlscheme --variable URL_SCHEME=mycoolapp
+$ cordova plugin add cordova-plugin-customurlscheme-ng --variable URL_SCHEME=mycoolapp SECOND_URL_SCHEME=othercoolapp THIRD_URL_SCHEME=supercoolapp
 ```
 
 Bleeding edge master version from Github:
 ```
-$ cordova plugin add https://github.com/EddyVerbruggen/Custom-URL-scheme.git --variable URL_SCHEME=mycoolapp
+$ cordova plugin add https://github.com/cmgustavo/Custom-URL-scheme.git --variable URL_SCHEME=mycoolapp SECOND_URL_SCHEME=othercoolapp THIRD_URL_SCHEME=supercoolapp
 ```
 (Note that the Phonegap CLI didn't support `--variable` before version 3.6.3, so please use the Cordova CLI as shown above in case you're on an older version)
 
@@ -68,83 +44,6 @@ The LaunchMyApp.js file is brought in automatically.
 
 Note for iOS: there was a bug in CLI which caused an error in your `*-Info.plist`.
 Please manually remove the blank line and whitespace (if any) from `NSMainNibFile` and `NSMainNibFile~ipad` (or your app won't start at all).
-
-
-### Manually
-Don't shoot yourself in the foot - use the CLI! That being said, here goes:
-
-#### iOS
-1\. `Copy www/ios/LaunchMyApp.js` to `www/js/plugins/LaunchMyApp.js` and reference it in your `index.html`:
-```html
-<script type="text/javascript" src="js/plugins/LaunchMyApp.js"></script>
-```
-
-2\. Add this to your `*-Info.plist` (replace `URL_SCHEME` by a nice scheme you want to have your app listen to, like `mycoolapp`):
-```xml
-<key>CFBundleURLTypes</key>
-<array>
-  <dict>
-    <key>CFBundleURLSchemes</key>
-    <array>
-      <string>URL_SCHEME</string>
-    </array>
-  </dict>
-</array>
-```
-
-#### Android
-1\. Copy www/android/LaunchMyApp.js to www/js/plugins/LaunchMyApp.js and reference it in your `index.html`:
-```html
-<script type="text/javascript" src="js/plugins/LaunchMyApp.js"></script>
-```
-
-2\. Add the following xml to your `config.xml` to always use the latest version of this plugin:
-```xml
-<plugin name="LaunchMyApp" value="nl.xservices.plugins.LaunchMyApp"/>
-```
-
-3\. Copy `LaunchMyApp.java` to `platforms/android/src/nl/xservices/plugins` (create the folders)
-
-4\. Add the following to your `AndroidManifest.xml` inside the `/manifest/application/activity` node (replace `URL_SCHEME` by a nice scheme you want to have your app listen to, like `mycoolapp`):
-```xml
-<intent-filter>
-  <data android:scheme="URL_SCHEME"/>
-  <action android:name="android.intent.action.VIEW" />
-  <category android:name="android.intent.category.DEFAULT" />
-  <category android:name="android.intent.category.BROWSABLE" />
-</intent-filter>
-```
-
-5\. In `AndroidManifest.xml` set the launchMode to singleTask to avoid issues like [#24]. `<activity android:launchMode="singleTask" ..`
-
-### PhoneGap Build
-
-Using LaunchMyApp with PhoneGap Build requires you to add the following xml to your `config.xml` to use the latest version of this plugin (replace `mycoolapp` by a nice scheme you want to have your app listen to):
-```xml
-<gap:plugin name="cordova-plugin-customurlscheme" source="npm">
-  <param name="URL_SCHEME" value="mycoolapp" />
-</gap:plugin>
-```
-
-The LaunchMyApp.js file is brought in automatically.
-
-NOTE: When Hydration is enabled at PGB, this plugin may not work.
-
-### Restoring cordova plugin settings on plugin add or update
-In order to be able to restore the plugin settings on `cordova plugin add`, one need to add the following feature into config.xml. Note that if you added the plugin with the `--save` param you will find this in your `config.xml` already, except for the `variable` tag which is likely a `param` tag. [Change that.](https://github.com/EddyVerbruggen/Custom-URL-scheme/issues/76)
-```xml
-  <feature name="Custom URL scheme">
-    <param name="id" value="cordova-plugin-customurlscheme" />
-    <param name="url" value="https://github.com/EddyVerbruggen/Custom-URL-scheme.git" />
-    <variable name="URL_SCHEME" value="mycoolapp" /><!-- change as appropriate -->
-  </feature>
-```
-
-Please notice that URL_SCHEME is saved as `variable`, not as `prop`. However if you do `cordova plugin add` with a --save option, cordova will write the URL_SCHEME as a `prop`, you need to change the tag name from `param` to `variable` in this case.
-
-These plugin restore instructions are tested on:
-cordova-cli 4.3.+ and cordova-android 3.7.1+
-
 
 ## 3. Usage
 
