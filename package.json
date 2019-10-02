@@ -1,7 +1,7 @@
 {
   "name": "cordova-plugin-customurlscheme-ng",
-  "version": "6.0.0",
-  "description": "Launch your app by using this URL:  mycoolapp://, you can add a path and even pass params like this: mycoolerapp://somepath?foo=bar, supports up to 4 scheme.",
+  "version": "7.0.0",
+  "description": "Launch your app by using this URL:  mycoolapp://, you can add a path and even pass params like this: mycoolerapp://somepath?foo=bar, supports up to 5 scheme.",
   "cordova": {
     "id": "cordova-plugin-customurlscheme-ng",
     "platforms": [
