@@ -2,7 +2,7 @@
 
 Launch your app by a link like this: `mycoolapp://`
 
-Supports up to 5 scheme.
+Supports up to 6 scheme.
 
 ## 1. Description
 
@@ -31,12 +31,12 @@ Replace `mycoolapp` by a nice scheme you want to have your app listen to:
 
 Latest release on npm:
 ```
-$ cordova plugin add cordova-plugin-customurlscheme-ng --variable URL_SCHEME=mycoolapp SECOND_URL_SCHEME=othercoolapp THIRD_URL_SCHEME=supercoolapp FOURTH_URL_SCHEME=amazingcoolapp FIFTH_URL_SCHEME=amazingcoolapptwo
+$ cordova plugin add cordova-plugin-customurlscheme-ng --variable URL_SCHEME=mycoolapp SECOND_URL_SCHEME=othercoolapp THIRD_URL_SCHEME=supercoolapp FOURTH_URL_SCHEME=amazingcoolapp FIFTH_URL_SCHEME=amazingcoolapptwo SIXTH_URL_SCHEME=amazingcoolappthree
 ```
 
 Bleeding edge master version from Github:
 ```
-$ cordova plugin add https://github.com/cmgustavo/Custom-URL-scheme.git --variable URL_SCHEME=mycoolapp SECOND_URL_SCHEME=othercoolapp THIRD_URL_SCHEME=supercoolapp FOURTH_URL_SCHEME=amazingcoolapp FIFTH_URL_SCHEME=amazingcoolapptwo
+$ cordova plugin add https://github.com/cmgustavo/Custom-URL-scheme.git --variable URL_SCHEME=mycoolapp SECOND_URL_SCHEME=othercoolapp THIRD_URL_SCHEME=supercoolapp FOURTH_URL_SCHEME=amazingcoolapp FIFTH_URL_SCHEME=amazingcoolapptwo SIXTH_URL_SCHEME=amazingcoolappthree
 ```
 (Note that the Phonegap CLI didn't support `--variable` before version 3.6.3, so please use the Cordova CLI as shown above in case you're on an older version)
 

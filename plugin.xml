@@ -2,14 +2,14 @@
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
         xmlns:android="http://schemas.android.com/apk/res/android"
         id="cordova-plugin-customurlscheme-ng"
-        version="7.0.0">
+        version="8.0.0">
 
   <name>Custom URL scheme NG</name>
 
   <description>
     Launch your app by using this URL:  mycoolapp://
     You can add a path and even pass params like this: mycoolerapp://somepath?foo=bar
-    Supports up to 5 scheme.
+    Supports up to 6 scheme.
   </description>
 
   <author>Eddy Verbruggen</author>
@@ -27,6 +27,7 @@
   <preference name="THIRD_URL_SCHEME" />
   <preference name="FOURTH_URL_SCHEME" />
   <preference name="FIFTH_URL_SCHEME" />
+  <preference name="SIXTH_URL_SCHEME" />
 
   <engines>
     <engine name="cordova" version=">=7.1.0"/>
@@ -68,6 +69,12 @@
           <key>CFBundleURLSchemes</key>
           <array>
             <string>$FIFTH_URL_SCHEME</string>
+          </array>
+        </dict>
+        <dict>
+          <key>CFBundleURLSchemes</key>
+          <array>
+            <string>$SIXTH_URL_SCHEME</string>
           </array>
         </dict>
       </array>
@@ -127,6 +134,12 @@
       </intent-filter>
       <intent-filter>
         <data android:scheme="$FIFTH_URL_SCHEME"/>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+      </intent-filter>
+      <intent-filter>
+        <data android:scheme="$SIXTH_URL_SCHEME"/>
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
