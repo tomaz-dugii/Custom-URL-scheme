@@ -2,13 +2,13 @@
 
 Launch your app by a link like this: `mycoolapp://`
 
-Supports up to 6 scheme.
+Supports up to 9 scheme.
 
 ## 1. Description
 
 This plugin allows you to start your app by calling it with a URL like `mycoolapp://path?foo=bar`
 
-* Supports up to 4 scheme
+* Supports up to 9 scheme
 * Compatible with [Cordova Plugman](https://github.com/apache/cordova-plugman)
 
 ### iOS specifics
